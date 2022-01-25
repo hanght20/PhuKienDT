@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhuKienDT", "PhuKienDT\PhuKienDT.csproj", "{52FC6D81-21C5-48B8-944A-6AA502596610}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhuKien.Model", "PhuKien.Model\PhuKien.Model.csproj", "{06DD83EA-4EF3-47C9-882E-F905FC287901}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52FC6D81-21C5-48B8-944A-6AA502596610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52FC6D81-21C5-48B8-944A-6AA502596610}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52FC6D81-21C5-48B8-944A-6AA502596610}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52FC6D81-21C5-48B8-944A-6AA502596610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06DD83EA-4EF3-47C9-882E-F905FC287901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06DD83EA-4EF3-47C9-882E-F905FC287901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06DD83EA-4EF3-47C9-882E-F905FC287901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06DD83EA-4EF3-47C9-882E-F905FC287901}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7651ABCB-E2D4-4C1B-92C0-AC4B127CAC19}
+	EndGlobalSection
+EndGlobal

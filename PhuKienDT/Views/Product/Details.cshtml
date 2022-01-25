@@ -1,0 +1,105 @@
+﻿@model PhuKien.Model.Entities.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-10 col-md-6 mt-5">
+        <div class="gallaryImg ">
+            <img src="~/image/anh/@Model.Anh" class="img-thumbnail img-fluid " alt="" style="width: 100%;">
+        </div>
+    </div>
+    <div class="col-10 col-md-6 mt-5">
+        <div class="product_desc">
+            <div class="product-title">
+                <h4 class="title">@Model.TenSanPham</h4>
+            </div>
+            <div class="product-price mt-4">
+                <h4 class="price">@Model.Gia</h4>
+            </div>
+
+            <div class="product_rating mt-4">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+            </div>
+
+            <div class="product-color mt-4">
+                <h6 class="product-title">Màu sắc</h6>
+                <div class="product mt-3">
+                    <ul>
+                        <li><a href="javascript:void(0)">Trắng</a></li>
+                        <li><a href="javascript:void(0)">Vàng</a></li>
+                        <li><a href="javascript:void(0)">Đen</a></li>
+                        <li><a href="javascript:void(0)">Xanh</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <form class="cart d-flex mt-4" method="post">
+                <h6 class="mt-2">Số lượng</h6>
+                <div class="quantity">
+                    <span class="minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
+                    <span class="plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                </div>
+                <button type="submit" class="btn cart-submit d-block addtocart">Thêm vào giỏ hàng</button>               
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col mt-4">
+            <h3 class="text-center">SẢN PHẨM LIÊN QUAN</h3>
+            <div class="card-deck mt-3">
+                <div class="card">
+                    <img src="~/image/anh/giado2.jpg" alt="" class="card-img-top">
+                    <div class="card-body text-center">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-search-plus"></i></button>
+                        <button class="btn btn-outline-danger btn-sm">Mua ngay</button>
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-shopping-cart"></i></button>
+                        <h5 class="mt-2"><a href="" class="text-dark">ProductName</a></h5>
+                        <h6>10.000đ</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/image/anh/case5.jpg" alt="" class="card-img-top">
+                    <div class="card-body text-center">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-search-plus"></i></button>
+                        <button class="btn btn-outline-danger btn-sm">Mua ngay</button>
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-shopping-cart"></i></button>
+                        <h5 class="mt-2"><a href="#" class="text-dark">ProductName</a></h5>
+                        <h6>10.000đ</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/image/anh/tainghe5.jpg" alt="" class="card-img-top">
+                    <div class="card-body text-center">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-search-plus"></i></button>
+                        <button class="btn btn-outline-danger btn-sm">Mua ngay</button>
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-shopping-cart"></i></button>
+                        <h5 class="mt-2"><a href="#" class="text-dark">ProductName</a></h5>
+                        <h6>10.000đ</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/image/anh/tai nghe7.jpg" alt="" class="card-img-top">
+                    <div class="card-body text-center">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-search-plus"></i></button>
+                        <button class="btn btn-outline-danger btn-sm">Mua ngay</button>
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-shopping-cart"></i></button>
+                        <h5 class="mt-2"><a href="#" class="text-dark">ProductName</a></h5>
+                        <h6>10.000đ</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-outline-info mt-3 " style="width: 30%; border-radius: 5px;">Xem thêm</button>
+            </div>
+        </div>
+    </div>
+</div>

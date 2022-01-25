@@ -1,0 +1,44 @@
+﻿@model List<PhuKien.Model.Entities.Category>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">DANH MỤC</h4>
+                    <button class="btn btn-secondary"><a asp-action="Create"><i class="fas fa-plus">Thêm mới</i></a></button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-md">
+                        <table id="example" class="table table-hover">
+                            <thead class=" text-primary ">
+                                <tr>
+                                    <th>Mã danh mục</th>
+                                    <th>Tên danh mục</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.MaDanhMuc</td>
+                                        <td>@item.TenDanhMuc</td>
+                                        <td>
+                                            <a asp-action="Edit"><i class="far fa-edit">Sửa</i></a> |
+                                            <a asp-action="Delete/@item.MaDanhMuc"  onclick="return confirm('Bạn có chắc chắn muốn xoá?');"><i class="far fa-trash-alt"></i> Xoá</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

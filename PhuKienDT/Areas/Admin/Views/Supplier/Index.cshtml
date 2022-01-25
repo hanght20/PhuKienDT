@@ -1,0 +1,195 @@
+﻿@model PhuKien.Model.Entities.Supplier
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">NHÀ CUNG CẤP</h4>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Thêm mới</button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-md"></div>
+                    <table class="table table-hover table-bordered" id="example">
+                        <thead class=" text-primary ">
+                            <tr>
+                                <th>Mã nhà cung cấp</th>
+                                <th>Tên nhà cung cấp</th>
+                                <th>Địa chỉ</th>
+                                <th>Email</th>
+                                <th>Điện thoại</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--The modal-->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Thêm mới</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="MaNcc">Mã nhà cung cấp</label>
+                        <input type="text" class="form-control" asp-for="MaNcc" />
+                    </div>
+                    <div class="form-group">
+                        <label for="TenNcc">Tên nhà cung cấp</label>
+                        <input type="text" class="form-control" asp-for="TenNcc" />
+                    </div>
+                    <div class="form-group">
+                        <label for="DiaChi">Địa chỉ</label>
+                        <input type="text" class="form-control" asp-for="DiaChi" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="text" class="form-control" asp-for="Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="DienThoai">Điện thoại</label>
+                        <input type="text" class="form-control" asp-for="DienThoai" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" id="btnAdd" onclick="return Add();">Thêm</button>
+                <button type="button" class="btn btn-danger" id="btnUpdate" style="display:none;" onclick="Update();">Cập nhật</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        loadData();
+    });
+
+    function loadData() {
+        $.ajax({
+            url: "/Admin/Supplier/List",
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json;charset=utf-8',
+            success: function (result) {
+                var html = '';
+                $.each(result, function (key, item) {
+                    html += '<tr>';
+                    html += '<td>' + item.maNcc + '</td>';
+                    html += '<td>' + item.tenNcc + '</td>';
+                    html += '<td>' + item.diaChi + '</td>';
+                    html += '<td>' + item.email + '</td>';
+                    html += '<td>' + item.dienThoai + '</td>';
+                    html += '<td><a href="#" onclick="return GetByID(' + item.maNcc + ')">Sửa</a> | <a href="#" onclick="Delete(' + item.maNcc + ')">Xoá</a></td>';
+                    html += '</tr>';
+                });
+                $('.tbody').html(html);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+    function Add() {
+        var obj = {
+            maNcc: parseInt($('#MaNcc').val()),
+            tenNcc: $('#TenNcc').val(),
+            diaChi: $('#DiaChi').val(),
+            email: $('#Email').val(),
+            dienThoai: $('#DienThoai').val()
+        };
+        $.ajax({
+            url: "/Admin/Supplier/Create",
+            data: JSON.stringify(obj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            traditional: true,
+            success: function (result) {
+                loadData();
+                $('#myModal').modal('hide');
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+    function GetByID(id) {
+        $.ajax({
+            url: "/Admin/Supplier/GetByID",
+            data: { id: id },
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            success: function (result) {
+                $('#MaNcc').val(result.maNcc);
+                $('#TenNcc').val(result.tenNcc);
+                $('#DiaChi').val(result.diaChi);
+                $('#Email').val(result.email);
+                $('#DienThoai').val(result.dienThoai);
+
+                $("#myModal").modal('show');
+                $("#btnAdd").hide('show');
+                $("#btnUpdate").show();
+            }
+        });
+    }
+
+    function Update() {
+        var obj = {
+            MaNcc: parseInt($("#MaNcc").val()),
+            TenNcc: $("#TenNcc").val(),
+            DiaChi: $("#DiaChi").val(),
+            Email: $("#Email").val(),
+            DienThoai: $("#DienThoai").val()
+        };
+        $.ajax({
+            url: "/Admin/Supplier/Update",
+            data: JSON.stringify(obj),
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+            success: function (result) {
+                loadData();
+                $("#myModal").modal('hide');
+                $('#MaNcc').val(""),
+                $("#TenNcc").val(""),
+                $("#DiaChi").val(""),
+                $("#Email").val(""),
+                $("#DienThoai").val("")
+            }
+        });
+    }
+
+    function Delete(id) {
+        var ans = confirm("Bạn có chắc chắn muốn xoá?");
+        if (ans) {
+            $.ajax({
+                url: "/Admin/Supplier/Delete" ,
+                data: { id: id },
+                type: 'GET',
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                success: function (result) {
+                    loadData();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+</script>
